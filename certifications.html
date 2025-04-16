@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Certifications - Food Waste Management</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- Page Title -->
+<div class="bg-dark text-white text-center py-3">
+  <h1 class="mb-0">Food Waste Management</h1>
+</div>
+
+<!-- Navbar (dynamic) -->
+<div id="navbarContainer"></div>
+
+<!-- Page Content -->
+<div class="container mt-5">
+  <h2 class="text-center mb-4">My Certifications</h2>
+
+  <table class="table table-bordered table-striped">
+    <thead class="table-dark">
+      <tr>
+        <th>Certificate Name</th>
+        <th>Total Donations</th>
+        <th>Issued Date</th>
+        <th>Download</th>
+      </tr>
+    </thead>
+    <tbody id="certificationsTable">
+      <!-- Certifications will be loaded here -->
+    </tbody>
+  </table>
+</div>
+
+<!-- Bootstrap + Navbar JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+  fetch('navbar.html')
+    .then(res => res.text())
+    .then(data => {
+      document.getElementById('navbarContainer').innerHTML = data;
+
+      // Attach logout after navbar is inserted
+      const logoutBtn = document.getElementById('logoutBtn');
+      if (logoutBtn) {
+        logoutBtn.addEventListener('click', () => {
+          localStorage.clear();
+          alert('Logged out successfully!');
+          window.location.href = '/index.html';
+        });
+      }
+    })
+    .catch(err => console.error('Failed to load navbar:', err));
+</script>
+
+<!-- Certifications Script -->
+<script src="js/certification.js"></script>
+
+</body>
+</html>
